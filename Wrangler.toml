@@ -1,0 +1,20 @@
+name = "portal-os"
+main = "dist/index.js"
+compatibility_date = "2024-09-06"
+
+account_id = "8cbc375a878f16f16c058e8f6b212398"
+workers_dev = true
+
+[build]
+command = "npm run build"
+cwd = "."
+
+[durable_objects]
+bindings = [
+  { name = "SubstrateDO", class_name = "SubstrateDO" },
+  { name = "BrokerDO", class_name = "BrokerDO" }
+]
+
+migrations = [
+  { tag = "v1", new_classes = ["SubstrateDO", "BrokerDO"] }
+]
