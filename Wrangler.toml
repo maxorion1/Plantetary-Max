@@ -1,6 +1,7 @@
 name = "portal-os"
 main = "dist/index.js"
 compatibility_date = "2024-09-07"
+workers_dev = true
 
 [durable_objects]
 bindings = [
