@@ -1,0 +1,26 @@
+{
+  "name": "portal",
+  "version": "4.4.0",
+  "description": "Portal-OS v4.4 - Multi-domain operating substrate deployed on Cloudflare Workers",
+  "main": "src/worker.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "npm run build:ts && npm run build:copy",
+    "build:ts": "esbuild src/worker.ts --bundle --platform=neutral --target=es2022 --outfile=dist/index.js",
+    "build:copy": "mkdir -p dist && (cp src/index.html dist/index.html 2>/dev/null || true) && (cp src/interactive.html dist/interactive.html 2>/dev/null || true) && (cp -r src/public dist/public 2>/dev/null || true)",
+    "test": "vitest",
+    "pretest": "npm run build"
+  },
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240620.0",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^4.3.0",
+    "vitest": "^1.6.0"
+  }
+}
