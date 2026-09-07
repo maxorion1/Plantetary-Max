@@ -1,13 +1,24 @@
-import { Hono } from 'hono';
+import { SubstrateDO } from "./do/SubstrateDO";
+import { BrokerDO } from "./do/BrokerDO";
 
-const app = new Hono();
+export default {
+  async fetch(request: Request, env: any) {
+    const url = new URL(request.url);
 
-app.get('/', (c) => {
-  return c.text('Portal‑OS Worker Active (Lane 1)');
-});
+    if (url.pathname === "/substrate") {
+      const id = env.SubstrateDO.idFromName("root");
+      const obj = env.SubstrateDO.get(id);
+      return obj.fetch(request);
+    }
 
-app.get('/health', (c) => {
-  return c.json({ status: 'ok', lane: 1 });
-});
+    if (url.pathname === "/broker") {
+      const id = env.BrokerDO.idFromName("root");
+      const obj = env.BrokerDO.get(id);
+      return obj.fetch(request);
+    }
 
-export default app;
+    return new Response("Portal‑OS Worker Runtime Online");
+  }
+};
+
+export { SubstrateDO, BrokerDO };
