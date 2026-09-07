@@ -2,8 +2,12 @@ name = "portal-os"
 main = "dist/index.js"
 compatibility_date = "2024-09-06"
 
-account_id = "8cbc375a878f16f16c058e8f6b212398"
+account_id = "b4555c974c0c85aaab4295cd5d6cb74f"
 workers_dev = true
+
+routes = [
+  { pattern = "portal-os.max-orion1.workers.dev/*", script = "portal-os" }
+]
 
 [build]
 command = "npm run build"
@@ -18,3 +22,11 @@ bindings = [
 migrations = [
   { tag = "v1", new_classes = ["SubstrateDO", "BrokerDO"] }
 ]
+
+[[kv_namespaces]]
+binding = "PORTAL_KV"
+id = "your_kv_id_here"
+
+[[r2_buckets]]
+binding = "PORTAL_BUCKET"
+bucket_name = "portal-bucket"
