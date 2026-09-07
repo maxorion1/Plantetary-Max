@@ -19,4 +19,4 @@ export class Router {
 
     return handler(request, env);
   }
-}
+} 
