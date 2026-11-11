@@ -9,4 +9,24 @@ watch_dir = "src"
 
 [site]
 bucket = "./dist"
-entry-point = "dist"
+
+[vars]
+ENVIRONMENT = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "planetary-max-db"
+database_id = "42213e2a-9607-4b46-9744-07d1420e0a60"
+migrations_dir = "d1/migrations"
+
+[[durable_objects.bindings]]
+name = "SUBSTRATE_DO"
+class_name = "SubstrateDO"
+
+[[durable_objects.bindings]]
+name = "BROKER_DO"
+class_name = "BrokerDO"
+
+[migrations]
+tag = "v1"
+new_classes = ["SubstrateDO", "BrokerDO"]
